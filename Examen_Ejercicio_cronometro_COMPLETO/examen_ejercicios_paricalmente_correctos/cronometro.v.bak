@@ -1,0 +1,8 @@
+module chronometro(
+	input rst,
+	input clk,
+	input enable,
+	output reg [6:0] HEX0,HEX1
+);
+
+

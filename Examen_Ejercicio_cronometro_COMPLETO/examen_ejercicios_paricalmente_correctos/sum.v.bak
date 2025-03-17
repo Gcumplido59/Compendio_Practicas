@@ -1,0 +1,23 @@
+module SUM (
+	input num1, num2, clk, rst
+	output num_resultado
+);
+
+parameter 	idle = 0,
+				s1 = 1,
+				s2 = 2;
+				
+				
+reg [2:0] current_state;
+reg [2:0] next_state;
+wire clklento;
+
+always @(psoedge clk or posedge rst)
+begin
+	if(rst)
+		current_state <= idle;
+	else
+		current_state <= next_state;
+end
+
+always @(current_state, )
