@@ -1,0 +1,19 @@
+module BCD#(parameter N = 10)(
+//entradas switches
+	input [N-1:0] A,
+	output [0:6] disp_out
+);
+
+//auxiliares
+wire [3:0] aux_mil;
+wire [3:0] aux_cent;
+wire [3:0] aux_decenas;
+wire [3:0] aux_unidades;
+
+//Division de unidades, decenas, centenas y miles
+assign aux_unidades = A % 10;  
+assign aux_decenas = (A%100)/10;
+assign aux_cent = (A%1000)/100;
+assign aux_mil = A/1000;
+
+endmodule

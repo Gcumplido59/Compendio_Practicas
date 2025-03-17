@@ -1,0 +1,124 @@
+# Reading pref.tcl
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2023.3 win64 Jul 17 2023
+# //
+# //  Copyright 1991-2023 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# do decodificador_BCD_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Copying c:/intelfpga_lite/23.1std/questa_fse/win64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+C:/Users/gaelm/Desktop/Decodificador_BCD {C:/Users/gaelm/Desktop/Decodificador_BCD/BCD.v}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 13:26:14 on Feb 25,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD" C:/Users/gaelm/Desktop/Decodificador_BCD/BCD.v 
+# -- Compiling module BCD
+# 
+# Top level modules:
+# 	BCD
+# End time: 13:26:14 on Feb 25,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/gaelm/Desktop/Decodificador_BCD {C:/Users/gaelm/Desktop/Decodificador_BCD/decoder_7_seg.v}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 13:26:14 on Feb 25,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD" C:/Users/gaelm/Desktop/Decodificador_BCD/decoder_7_seg.v 
+# -- Compiling module decoder_7_seg
+# 
+# Top level modules:
+# 	decoder_7_seg
+# End time: 13:26:14 on Feb 25,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+C:/Users/gaelm/Desktop/Decodificador_BCD {C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_wrapper.v}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 13:26:14 on Feb 25,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD" C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_wrapper.v 
+# -- Compiling module BCD_wrapper
+# 
+# Top level modules:
+# 	BCD_wrapper
+# End time: 13:26:14 on Feb 25,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -sv -work work +incdir+C:/Users/gaelm/Desktop/Decodificador_BCD {C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 13:26:14 on Feb 25,2025
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD" C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_tb.sv 
+# -- Compiling module BCD_tb
+# 
+# Top level modules:
+# 	BCD_tb
+# End time: 13:26:14 on Feb 25,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  BCD_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" BCD_tb 
+# Start time: 13:26:14 on Feb 25,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.BCD_tb(fast)
+# Loading work.BCD(fast)
+# Loading work.decoder_7_seg(fast)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# valor a probar =  547
+# valor a probar =  562
+# valor a probar =  522
+# valor a probar =  797
+# valor a probar =  440
+# valor a probar =  730
+# valor a probar =  704
+# valor a probar =  172
+# valor a probar =  306
+# valor a probar =   28
+add wave -position insertpoint  \
+sim:/BCD_tb/DUT/aux_mil
+add wave -position insertpoint  \
+sim:/BCD_tb/DUT/aux_cent
+add wave -position insertpoint  \
+sim:/BCD_tb/DUT/aux_decenas
+add wave -position insertpoint  \
+sim:/BCD_tb/DUT/aux_unidades
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.BCD_tb(fast)
+# Loading work.BCD(fast)
+# Loading work.decoder_7_seg(fast)
+run -all
+# valor a probar =  547
+# valor a probar =  562
+# valor a probar =  522
+# valor a probar =  797
+# valor a probar =  440
+# valor a probar =  730
+# valor a probar =  704
+# valor a probar =  172
+# valor a probar =  306
+# valor a probar =   28
+# Can't move the Now cursor.
+# End time: 13:40:33 on Feb 25,2025, Elapsed time: 0:14:19
+# Errors: 0, Warnings: 1

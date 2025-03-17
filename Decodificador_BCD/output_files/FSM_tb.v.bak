@@ -1,0 +1,44 @@
+module FSM_tb;
+
+    reg clk;
+    reg rst_a_p;
+    reg enable;
+    wire FSM_out;
+    
+    FMS DUT(
+        .clk(clk),
+        .rst_a_p(rst_a_p),
+        .enable(enable),
+        .FSM_out(FSM_out)
+    );
+    
+
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+    
+    initial 
+	 begin
+        
+        rst_a_p = 1;
+        enable  = 0;
+        #10;          
+        rst_a_p = 0;
+        
+     
+        enable = 0;
+        #20; 
+        enable = 1;
+        #20;
+		  enable = 0;
+		  #100
+        
+        
+ 
+       
+        #20;
+        $finish;
+    end
+
+endmodule

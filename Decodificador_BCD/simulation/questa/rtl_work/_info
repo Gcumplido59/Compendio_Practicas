@@ -1,0 +1,126 @@
+m255
+K4
+z2
+!s12c _opt
+Z0 !s99 nomlopt
+!s11f vlog 2023.3 2023.07, Jul 17 2023
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 dC:/Users/gaelm/Desktop/Decodificador_BCD/simulation/questa
+T_opt
+!s110 1740511575
+VHcNRN6KeTogh@U1mlRLUN0
+04 6 4 work BCD_tb fast 0
+=1-2cf05db3cb87-67be1957-1da-6418
+R0
+!s12b OEM100
+!s124 OEM10U6 
+o-quiet -auto_acc_if_foreign -work work -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work +acc
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2023.3;77
+vBCD
+2C:/Users/gaelm/Desktop/Decodificador_BCD/BCD.v
+Z3 !s110 1740511574
+!i10b 1
+!s100 a4P65TD4Gc<e2OO3m3ZeL0
+Ik^5O:Sm;C12g75IS>N8952
+R1
+w1739972943
+8C:/Users/gaelm/Desktop/Decodificador_BCD/BCD.v
+FC:/Users/gaelm/Desktop/Decodificador_BCD/BCD.v
+!i122 0
+L0 1 39
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2023.3;77
+r1
+!s85 0
+31
+Z6 !s108 1740511574.000000
+!s107 C:/Users/gaelm/Desktop/Decodificador_BCD/BCD.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD|C:/Users/gaelm/Desktop/Decodificador_BCD/BCD.v|
+!i113 0
+Z7 o-vlog01compat -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z8 !s92 -vlog01compat -work work +incdir+C:/Users/gaelm/Desktop/Decodificador_BCD -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+n@b@c@d
+vBCD_tb
+2C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_tb.sv
+DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R3
+!i10b 1
+!s100 lKEI`bCjA01DzTo_>GRWU2
+IoQ7LJYLWC@>I9RK2doIKK0
+S1
+R1
+w1739890008
+8C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_tb.sv
+FC:/Users/gaelm/Desktop/Decodificador_BCD/BCD_tb.sv
+!i122 3
+L0 1 33
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_tb.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD|C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_tb.sv|
+!i113 0
+o-sv -work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+!s92 -sv -work work +incdir+C:/Users/gaelm/Desktop/Decodificador_BCD -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+n@b@c@d_tb
+vBCD_wrapper
+2C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_wrapper.v
+R3
+!i10b 1
+!s100 aj_S3YBZlA0j5CKml7Ome3
+IXdBb_4^GIKaT7D25bGOaT0
+R1
+w1740492982
+8C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_wrapper.v
+FC:/Users/gaelm/Desktop/Decodificador_BCD/BCD_wrapper.v
+!i122 2
+L0 1 15
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_wrapper.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD|C:/Users/gaelm/Desktop/Decodificador_BCD/BCD_wrapper.v|
+!i113 0
+R7
+R8
+R2
+n@b@c@d_wrapper
+vdecoder_7_seg
+2C:/Users/gaelm/Desktop/Decodificador_BCD/decoder_7_seg.v
+R3
+!i10b 1
+!s100 0BFjG>ZPjo0IN1W[ZhJ263
+I_6zejB[Q^8:kcR?n]HHfz3
+R1
+w1740168210
+8C:/Users/gaelm/Desktop/Decodificador_BCD/decoder_7_seg.v
+FC:/Users/gaelm/Desktop/Decodificador_BCD/decoder_7_seg.v
+!i122 1
+L0 1 24
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/gaelm/Desktop/Decodificador_BCD/decoder_7_seg.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/gaelm/Desktop/Decodificador_BCD|C:/Users/gaelm/Desktop/Decodificador_BCD/decoder_7_seg.v|
+!i113 0
+R7
+R8
+R2
