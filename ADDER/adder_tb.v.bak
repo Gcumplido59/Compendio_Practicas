@@ -1,0 +1,10 @@
+`timescale 1ns / 100ps
+
+module adder_tb();
+
+reg a,b;
+wire S1,S0;
+
+adder DUT(
+.
+);

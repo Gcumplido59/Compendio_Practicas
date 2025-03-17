@@ -1,0 +1,9 @@
+module adder(
+	input a,b,
+	output s1,s0
+);
+
+	assign s0 = a^b;
+	assign s1 = a&b;
+
+endmodule
