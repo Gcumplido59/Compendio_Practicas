@@ -1,0 +1,8 @@
+module uart_rx(
+	input clk, serial_in, rst,
+	output [7:0] parallel_out
+);
+
+
+
+endmodule

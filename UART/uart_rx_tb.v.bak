@@ -1,0 +1,45 @@
+module uart_rx_tb;
+
+reg clk = 0;
+reg serial_in = 1;
+reg rst = 1;
+wire [7:0] parallel_out;
+
+uart_rx DUT(
+	.clk(clk),
+	.serial_in(serial_in),
+	.rst(rst),
+	.parallel_out(parallel_out)
+);
+
+always #10 clk <= ~clk;
+
+task UART_WRITE_BYTE;
+	input [7:0] i_data;
+	integer i;
+	begin
+		serial_in <= 0
+		#20;
+		
+		for (i = 0; i<8; i++)
+			begin
+				serial_in <= i_data[i]
+				#20;
+			end
+			
+		serial_in <= 1;
+		#20
+	end
+	
+initial
+	begin
+		@(posedge clk);
+		UART_WRITE_BYTE(8'HFE);
+		@(posedge clk);
+		
+		@(posedge clk);
+		UART_WRITE_BYTE(8'HAA);
+		@(posedge clk);
+	end
+
+endmoudle

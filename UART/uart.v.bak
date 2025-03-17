@@ -1,0 +1,81 @@
+module uart(
+	input [7:0] data,
+	input send_data, rst, clk
+	output serial_out
+);
+
+localparam base_freq = 'd50_000_000;
+localparam baudrate = 'd115_200; //velocidad de transmicion
+localparam counts_per_bit = base_freq/baudrate;
+
+localparam TX_IDLE = 2'b00,
+					TX_START = 2'b01,
+					TX_DATA = 2'b10,
+					TX_STOP = 2'b11;
+					
+reg [1:0] active_state;
+reg [31:0] clock_ctr;
+reg [7:0] d_idx = 0;
+
+always @(posedge clk or negedge rst)
+begin
+	if (~rst)
+		begin
+			active_state <= TX_IDLE;
+		end
+		
+	case (active_state)
+	else
+		begin
+			TX_IDLE:
+				begin
+					clock_ctr <= 0;
+					d_idx <= 0;
+					if (send_data)
+						active_state <= TX_START;
+					else
+						active_state <= TX_IDLE;
+				end
+			
+			TX_START:
+				begin
+					serial_out <= 0;
+					if(clock_ctr < counts_per_bit)
+						begin
+							ctr <= ctr + 1;
+							active_state <= TX_START;
+						end
+					else
+						begin
+							clock_ctr <= 0;
+							active_state <= TX_DATA;
+						end
+				end
+			
+			TX_DATA:
+				begin
+					serial_out <= data[d_idx];
+					if (clock_ctr < counter_per_bit)
+						begin
+							clock_ctr <= clock_tr +1;
+							active_state <= TX_DATA;
+						end
+					else
+						begin
+							clokc_ctr <= 0;
+							d_idx <= d_idx + 1;
+							if(d_idx == 7)
+								begin
+								active_state <= TX_STOP;
+								d_idx <= 0;
+								end
+							else
+								active_state <= TX_DATA;
+						end
+				end
+				
+			TX_STOP:
+				begin
+				end
+		end
+end

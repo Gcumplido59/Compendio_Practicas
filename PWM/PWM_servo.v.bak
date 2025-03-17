@@ -1,0 +1,87 @@
+module PWM(
+    input pb_inc,         // Botón para incrementar
+    input pb_dec,         // Botón para decrementar
+    input clk,            // Reloj del sistema
+    input rst,            // Reset síncrono/asíncrono (dependiendo de tu diseño)
+    output pwm_out        // Señal PWM resultante
+);
+
+// Señales internas
+wire neg_pb_inc = ~pb_inc;    // Se invierte para detectar flanco de bajada
+wire neg_pb_dec = ~pb_dec;
+wire slow_clk;                // Reloj reducido para debouncing y PWM
+wire debounced_pb_inc, debounced_pb_dec;
+wire pb_inc_oneShot, pb_dec_oneShot;  // Pulsos one-shot para que cada pulsación cuente una sola vez
+
+// Parámetros para la generación del PWM
+parameter BASE_FREQ   = 50_000_000;           // Frecuencia base (50 MHz)
+parameter TARGET_FREQ = 50;                   // Frecuencia PWM deseada (50 Hz)
+parameter COUNTS      = BASE_FREQ / TARGET_FREQ;
+parameter STEP        = 1000;                 // Incremento/decremento en "cuentas" (ajusta según necesites)
+parameter MAX_DC      = COUNTS;               // Valor máximo para el duty cycle
+parameter MIN_DC      = 0;                    // Valor mínimo para el duty cycle
+
+// Instanciar divisor de reloj (se asume que clkdiv.v funciona según lo esperado)
+clkdiv #(.FREQ(TARGET_FREQ)) clkdiv_inst(
+    .clk(clk),
+    .rst(rst),
+    .clk_div(slow_clk)
+);
+
+// Instanciar debouncers para cada botón
+debouncer2 deb_inc(
+    .pb_1(neg_pb_inc),
+    .clk(slow_clk),
+    .rst(rst),
+    .pb_out(debounced_pb_inc)
+);
+debouncer2 deb_dec(
+    .pb_1(neg_pb_dec),
+    .clk(slow_clk),
+    .rst(rst),
+    .pb_out(debounced_pb_dec)
+);
+
+// Instanciar módulos oneshot para generar pulsos únicos en cada pulsación
+oneshot oneshot_inc(
+    .clk(slow_clk),
+    .button(debounced_pb_inc),
+    .oneShot(pb_inc_oneShot)
+);
+oneshot oneshot_dec(
+    .clk(slow_clk),
+    .button(debounced_pb_dec),
+    .oneShot(pb_dec_oneShot)
+);
+
+// Registro para el duty cycle (DC). Se inicializa en la mitad del rango.
+reg [31:0] DC;
+always @(posedge slow_clk or posedge rst) begin
+    if (rst)
+        DC <= COUNTS / 2;
+    else begin
+        // Incrementa o decrementa solo cuando se genera el pulso one-shot
+        if (pb_inc_oneShot && (DC + STEP <= MAX_DC))
+            DC <= DC + STEP;
+        else if (pb_dec_oneShot && (DC >= STEP + MIN_DC))
+            DC <= DC - STEP;
+        else
+            DC <= DC;
+    end
+end
+
+// Generador de la señal PWM: se utiliza un contador que se resetea en COUNTS
+reg [31:0] counter;
+always @(posedge slow_clk or posedge rst) begin
+    if (rst)
+        counter <= 0;
+    else if (counter >= COUNTS - 1)
+        counter <= 0;
+    else
+        counter <= counter + 1;
+end
+
+// La salida PWM es alta mientras el contador sea menor que el duty cycle (DC)
+assign pwm_out = (counter < DC) ? 1'b1 : 1'b0;
+
+endmodule

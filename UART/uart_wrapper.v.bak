@@ -1,0 +1,20 @@
+module uart_wrapper (
+input MAX10_CLK1_50,
+input [1:0] KEY,
+input [7:0] ARDUINO_IO,
+input [7:0] SW,
+output [0:1] GPIO,
+output [8:0] LEDR
+);
+
+uart uart_inst (
+    .clk(MAX10_CLK1_50),
+    .rst(KEY[0]),
+    .send_data(KEY[1]),
+    .data_in(ARDUINO_IO[0]),
+    .data(SW),
+    .data_out(GPIO[0]),
+    .data_print(LEDR)
+);
+
+endmodule
