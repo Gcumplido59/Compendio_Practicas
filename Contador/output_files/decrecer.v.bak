@@ -1,0 +1,18 @@
+module decrecer(
+    input clk, rst, enable,
+    output reg [3:0] count
+);
+
+always @(posedge clk or posedge rst)
+	begin
+		if(rst)
+			count <= 4'd15s;
+		else if(enable)
+			if(count == 4'd0)
+				count <= 4'd9;       // Al llegar a 0, vuelve a 9
+			else
+			count <= count - 1;
+		else
+			count <= count;
+	end
+endmodule

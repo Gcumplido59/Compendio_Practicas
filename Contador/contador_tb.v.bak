@@ -1,0 +1,25 @@
+`timescale 1ns / 100ps
+
+module contador_tb();
+
+reg clk, rst, enable;
+wire [3:0] count;
+
+adder DUT(
+.clk(clk_reg),
+.rst(rst_reg),
+.enable(enable_reg),
+.count(count_wire)
+);
+
+initial
+begin
+	rst_reg = 1;
+	#10
+	rst_reg = 0;
+	#10
+	enable_wire = 1;
+	$stop;
+	$finish;
+end
+endmodule

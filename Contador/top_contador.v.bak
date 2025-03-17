@@ -1,0 +1,61 @@
+module top_level(
+    input clk,         // Reloj principal de la FPGA (por ejemplo, 50 MHz)
+    input sw_rst,      // Switch de reset
+    input sw_enable,   // Switch de enable
+    input sw_dir,      // Switch para seleccionar dirección: 0 -> cuenta ascendente, 1 -> descendente
+    output [0:6] seg   // Salida para el display de 7 segmentos
+);
+
+//------------------------------------------------------------------------------
+  // Debounce para el switch de reset
+  wire rst_db;
+  debouncer #(.N_MAX(5000)) debouncer_rst (
+      .clk(clk),
+      .rst_a_p(1'b0),       // No se utiliza reset adicional para el debouncer
+      .debouncer_in(sw_rst),
+      .debouncer_out(rst_db)
+  );
+
+//------------------------------------------------------------------------------
+  // Generación de un reloj lento (1 Hz) utilizando clkdiv
+  wire slow_clk;
+  clkdiv #(.constantN(50000000)) clkdiv_inst (
+      .clk(clk),
+      .rst(rst_db),   // Se utiliza el reset debounced
+      .clk_div(slow_clk)
+  );
+
+//------------------------------------------------------------------------------
+  // Instancia del contador ascendente
+  wire [3:0] count_up;
+  contador contador_inst (
+      .clk(slow_clk),
+      .rst(rst_db),
+      .enable(sw_enable),
+      .count(count_up)
+  );
+
+//------------------------------------------------------------------------------
+  // Instancia del contador descendente
+  wire [3:0] count_down;
+  contador_down contador_down_inst (
+      .clk(slow_clk),
+      .rst(rst_db),
+      .enable(sw_enable),
+      .count(count_down)
+  );
+
+//------------------------------------------------------------------------------
+  // Selección del contador según el switch de dirección:
+  // si sw_dir es 0 se usa el contador ascendente, si es 1 el descendente.
+  wire [3:0] counter_out;
+  assign counter_out = (sw_dir) ? count_down : count_up;
+
+//------------------------------------------------------------------------------
+  // Instancia del decodificador BCD para mostrar el dígito en el display de 7 segmentos
+  BCD display_inst (
+      .BCD_in_sw(counter_out),
+      .display_unidad(seg)
+  );
+
+endmodule

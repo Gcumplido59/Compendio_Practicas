@@ -1,0 +1,15 @@
+module oneshot(
+	input clk, button
+	output oneShot
+);
+
+//auxiliares
+wire delay;
+wire xor;
+
+always @(posedge clk)
+begin
+	if(button == delay)
+end
+
+endmodule
