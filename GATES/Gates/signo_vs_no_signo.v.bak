@@ -1,0 +1,9 @@
+module signo_vs_no_signo(
+
+	input [15:0] dato,
+	output [15] dato_abs
+
+);
+
+
+endmodule 
